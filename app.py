@@ -88,7 +88,6 @@ elif seccion == "Prediccion de Abandono":
     solvente = st.selectbox("¿Está solvente actualmente con la Universidad?", ["Sí", "No"])
     empleo = st.selectbox("¿Tienes empleo actualmente?", ["Sí", "No"])
     traslado = st.slider("¿Cuánto tiempo tardas en llegar a la universidad? (en horas)", 0.0, 5.0, 1.0, step=0.5)
-
     desempeno = st.selectbox("¿Cómo calificarías tu desempeño en las tareas?", ["Bueno", "Regular", "Malo"])
     suenio = st.slider("Horas de sueño diarias", 0, 12, 6)
     carga = st.selectbox("¿Cómo evaluarías tu carga laboral?", ["Baja", "Moderada", "Alta"])
@@ -142,6 +141,10 @@ elif seccion == "Prediccion de Abandono":
                 - Si esta solvente con la universidad
                 - Si tiene empleo actualmente
                 - Tiempo de traslado a la universidad
+                - Desempeño en las tareas
+                - Horas de sueño diarias
+                - Carga laboral
+                - Nivel de estrés
                         
                 **Modelo utilizado:** Red neuronal con 2 capas densas y activacion relu, con una capa de salida sigmoide.
                 
