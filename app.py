@@ -89,14 +89,34 @@ elif seccion == "Prediccion de Abandono":
     empleo = st.selectbox("¿Tienes empleo actualmente?", ["Sí", "No"])
     traslado = st.slider("¿Cuánto tiempo tardas en llegar a la universidad? (en horas)", 0.0, 5.0, 1.0, step=0.5)
 
+    desempeno = st.selectbox("¿Cómo calificarías tu desempeño en las tareas?", ["Bueno", "Regular", "Malo"])
+    suenio = st.slider("Horas de sueño diarias", 0, 12, 6)
+    carga = st.selectbox("¿Cómo evaluarías tu carga laboral?", ["Baja", "Moderada", "Alta"])
+    estres = st.selectbox("¿Cómo evaluarías tu nivel de estrés?", ["Bajo", "Moderado", "Alto"])
+
     if st.button("▶️ Predecir"):
         try:
             model = load_keras_model("models_abandono/modelo_abandono.h5")
             scaler = joblib.load("models_abandono/scaler.pkl")
 
             map_si_no = {"Sí": 1, "No": 0}
-            datos = np.array([[map_si_no[estudios_previos], map_si_no[inscrito], map_si_no[reprobado],
-                               map_si_no[solvente], map_si_no[empleo], traslado]])
+            map_desempeno = {"Bueno": 2, "Regular": 1, "Malo": 0}
+            map_carga = {"Baja": 0, "Moderada": 1, "Alta": 2}
+            map_estres = {"Bajo": 0, "Moderado": 1, "Alto": 2}
+
+            datos = np.array([[
+                map_si_no[estudios_previos],
+                map_si_no[inscrito],
+                map_si_no[reprobado],
+                map_si_no[solvente],
+                map_si_no[empleo],
+                traslado,
+                map_desempeno[desempeno],
+                suenio,
+                map_carga[carga],
+                map_estres[estres]
+            ]])
+
             datos_escalados = scaler.transform(datos)
             prob = model.predict(datos_escalados)[0][0]
 
@@ -105,8 +125,10 @@ elif seccion == "Prediccion de Abandono":
                 st.error("🔴 Riesgo ALTO de abandono universitario.")
             else:
                 st.success("🟢 Riesgo BAJO de abandono universitario.")
+
         except Exception as e:
             st.error(f"❌ Error al cargar modelo o predecir: {e}")
+
 
         with st.expander("📄 Informacion del Proyecto"):
             st.markdown("""
