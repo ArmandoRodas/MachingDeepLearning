@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from tensorflow.keras.models import load_model as load_keras_model
 
 # Configurar pagina
 st.set_page_config(page_title="IA Sanarate", layout="wide")
@@ -89,7 +90,7 @@ elif seccion == "Prediccion de Abandono":
 
     if st.button("▶️ Predecir"):
         try:
-            model = load_model("models_abandono/modelo_abandono.h5")
+            model = load_keras_model("models_abandono/modelo_abandono.h5")
             scaler = joblib.load("models_abandono/scaler.pkl")
 
             map_si_no = {"Sí": 1, "No": 0}
