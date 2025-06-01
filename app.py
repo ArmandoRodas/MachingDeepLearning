@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import joblib
 from tensorflow.keras.models import load_model as load_keras_model
+import numpy as np
 
 # Configurar pagina
 st.set_page_config(page_title="IA Sanarate", layout="wide")
