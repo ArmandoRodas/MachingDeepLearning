@@ -11,7 +11,7 @@ st.write("---")
 
 # Menu lateral
 with st.sidebar.expander("🔧 Menu", expanded=True):
-    seccion = st.radio("Elige la aplicacion", ["Prediccion de Gastos", "Proyecto Deep Learning"])
+    seccion = st.radio("Elige la aplicacion", ["Prediccion de Gastos", "Prediccion de Abandono"])
 
 # Cargar pipeline entrenado
 @st.cache_resource
@@ -76,7 +76,7 @@ if seccion == "Prediccion de Gastos":
         st.error(f"Ocurrio un error al cargar el pipeline: {e}")
 
 # Placeholder
-    else: seccion == "Prediccion de Abandono":
+elif seccion == "Prediccion de Abandono":
     st.header("🔍 Predicción de Abandono Universitario")
     st.markdown("Completa el siguiente formulario con tus datos:")
 
