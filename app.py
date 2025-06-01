@@ -15,13 +15,13 @@ with st.sidebar.expander("🔧 Menu", expanded=True):
 
 # Cargar pipeline entrenado
 @st.cache_resource
-def load_model():
+def load_gastos_model():
     return joblib.load("models/expenses_model.pkl")
 
 # App de prediccion
 if seccion == "Prediccion de Gastos":
     try:
-        model = load_model()
+        model = load_gastos_model()
 
         st.subheader("🧮 Parametros de Entrada")
 
