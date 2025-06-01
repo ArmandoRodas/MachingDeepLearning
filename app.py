@@ -107,3 +107,21 @@ elif seccion == "Prediccion de Abandono":
                 st.success("🟢 Riesgo BAJO de abandono universitario.")
         except Exception as e:
             st.error(f"❌ Error al cargar modelo o predecir: {e}")
+
+        with st.expander("📄 Informacion del Proyecto"):
+            st.markdown("""
+                Este proyecto predice la probabilidad que tiene un estudiante universitario de abandonar la carrera.
+
+                **Datos que se consideraron para el modelo de predicción:**
+                        
+                - Si tiene estudios universitarios previos
+                - Si esta inscrito en la universidad
+                - Si ha reprobado alguna materia
+                - Si esta solvente con la universidad
+                - Si tiene empleo actualmente
+                - Tiempo de traslado a la universidad
+                        
+                **Modelo utilizado:** Red neuronal con 2 capas densas y activacion relu, con una capa de salida sigmoide.
+                
+                **Plataforma:** Streamlit Cloud + GitHub (correo universitario).
+            """, unsafe_allow_html=True)
